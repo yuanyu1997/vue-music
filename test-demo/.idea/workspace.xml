@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6c3b38e3-23cf-40f8-9917-2c142246198b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Reception/src/api/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Reception/src/api/recommend.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Reception/src/base/slider/slider.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Reception/src/common/js/dom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Reception/src/common/js/jsonp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Reception/src/components/m-header/temp/logo@2x.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Reception/src/components/m-header/temp/logo@3x.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Reception/src/components/recommend/recommend.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/test-demo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.babelrc" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/.babelrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/.eslintignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.postcssrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/.postcssrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/build/build.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/check-versions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/build/check-versions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/build/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/build/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/vue-loader.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/build/vue-loader.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/webpack.base.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/build/webpack.base.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/webpack.dev.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/build/webpack.dev.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/webpack.prod.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/build/webpack.prod.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config/dev.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/config/dev.env.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/config/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config/prod.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/config/prod.env.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/common/fonts/music-icon.eot" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/common/fonts/music-icon.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/common/fonts/music-icon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/common/fonts/music-icon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/common/fonts/music-icon.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/common/fonts/music-icon.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/common/fonts/music-icon.woff" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/common/fonts/music-icon.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/common/image/default.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/common/image/default.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/common/stylus/base.styl" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/common/stylus/base.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/common/stylus/icon.styl" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/common/stylus/icon.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/common/stylus/index.styl" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/common/stylus/index.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/common/stylus/mixin.styl" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/common/stylus/mixin.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/common/stylus/reset.styl" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/common/stylus/reset.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/common/stylus/variable.styl" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/common/stylus/variable.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/m-header/logo@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/components/m-header/logo@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/m-header/logo@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/components/m-header/logo@3x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/m-header/m-header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/components/m-header/m-header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/rank/rank.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/components/rank/rank.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/recommend/recommend.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/search/search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/components/search/search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/singer/singer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/components/singer/singer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/tab/tab.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/components/tab/tab.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/../Reception/static/.gitkeep" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="package.json" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1U9W89TiCGailEHWQkPFXrcLkLy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/jsonp-test" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
+    <property name="ts.external.directory.path" value="D:\programmingSoftware\JetBrains\apps\WebStorm\ch-0\193.5233.80\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\BaiduNetdiskDownload\Vue 2.0 移动端音乐App\my-code\vue-music\test-demo\jsonp-test" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\BaiduNetdiskDownload\Vue 2.0 移动端音乐App\my-code\vue-music\test-demo\jsonp-test" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6c3b38e3-23cf-40f8-9917-2c142246198b" name="Default Changelist" comment="" />
+      <created>1574769129433</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1574769129433</updated>
+      <workItem from="1574769130570" duration="999000" />
+      <workItem from="1574777903537" duration="869000" />
+      <workItem from="1574819964723" duration="353000" />
+      <workItem from="1574826124139" duration="11128000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="461" y="162" width="916" height="716" key="SettingsEditor" timestamp="1574827694483">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" width="916" height="716" key="SettingsEditor/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1574827694483" />
+  </component>
+</project>
