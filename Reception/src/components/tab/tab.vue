@@ -7,8 +7,7 @@
       <span class="tab-link">歌手</span>
     </router-link>
     <router-link tag="div" class="tab-item" to="/rank">
-      <span class="tab-link">排行
-      </span>
+      <span class="tab-link">排行</span>
     </router-link>
     <router-link tag="div" class="tab-item" to="/search">
       <span class="tab-link">搜索</span>
@@ -17,7 +16,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-export default {}
+  export default {}
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">

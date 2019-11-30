@@ -1,7 +1,11 @@
+// babel-polyfill用于将ES6代码转为ES5代码
 import 'babel-polyfill'
+
 import Vue from 'vue'
 import App from './App'
+
 import router from './router/index.js'
+
 import './common/stylus/index.styl'
 
 import fastclick from 'fastclick'

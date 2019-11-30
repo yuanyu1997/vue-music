@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+<body>
+
+<div id="div" class="a b c d e f g"></div>
+<script>
+    // 添加的className
+    const className = "666";
+    // dom对象
+    const dom = document.getElementById("div");
+    //a b c d e f g
+    console.log(dom.className);
+
+    let newClass = dom.className.split(' ');
+    newClass.push(className);
+    // className之间空格符分开
+    dom.className = newClass.join(' ');
+
+    //a b c d e f g 666
+    console.log(dom.className);
+</script>
+
+</body>
+
+
+</html>

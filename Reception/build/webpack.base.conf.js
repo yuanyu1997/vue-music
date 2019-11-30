@@ -22,6 +22,7 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
+    // 入口文件
     app: './src/main.js'
   },
   output: {
@@ -32,6 +33,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
+    // 自动补全文件后缀
     extensions: ['.js', '.vue', '.json'],
     alias: {
       //配置别名

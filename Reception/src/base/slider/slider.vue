@@ -1,12 +1,13 @@
 <template>
-  <!--轮播图-->
+  <!--轮播-->
   <div class="slider" ref="slider">
     <div class="slider-group" ref="sliderGroup">
-      <!--插槽-->
+      <!--插槽(图片)-->
       <slot></slot>
     </div>
     <div class="dots">
-      <span class="dot" :class="{active: currentPageIndex === index }" v-for="(item, index) in dots"></span></div>
+      <span class="dot" :class="{active: currentPageIndex === index }" v-for="(item, index) in dots"></span>
+    </div>
   </div>
 </template>
 
@@ -15,7 +16,7 @@
   import {addClass} from '../../common/js/dom.js'
 
   export default {
-    name: 'slider',
+    // name: 'slider',
     props: {
       // 是否循环轮播
       loop: {
@@ -36,6 +37,7 @@
     data() {
       return {
         dots: [],
+        // 当前是第几页
         currentPageIndex: 0
       }
     },
@@ -50,6 +52,7 @@
         }
       }, 20) // 游览器默认刷新时间间隔为17ms
 
+      // 当视口宽度改变需要重新计算slider
       window.addEventListener('resize', () => {
         if (!this.slider) {
           return
@@ -62,9 +65,12 @@
       clearTimeout(this.timer)
     },
     methods: {
-      _setSliderWidth(isResize) {
+      // 手动slider计算宽度
+      _setSliderWidth(isResize = false) {
+        // https://blog.csdn.net/qq_40794973/article/details/103290952
         this.children = this.$refs.sliderGroup.children
 
+        // 总宽度
         let width = 0
         let sliderWidth = this.$refs.slider.clientWidth
         for (let i = 0; i < this.children.length; i++) {
@@ -73,22 +79,30 @@
           child.style.width = sliderWidth + 'px'
           width += sliderWidth
         }
+        // 克隆(拷贝两份) 保证无缝滚动
+        // 视口改变导致重新计算slider width不需要在拷贝了
         if (this.loop && !isResize) {
           width += 2 * sliderWidth
         }
         this.$refs.sliderGroup.style.width = width + 'px'
       },
+      // 初始化slider
       _initSlider() {
         this.slider = new BScroll(this.$refs.slider, {
+          // 横向滚动
           scrollX: true,
+          // 纵向滚动
           scrollY: false,
           momentum: false,
           snap: true,
+          // 是否循环轮播
           snapLoop: this.loop,
           snapThreshold: 0.3,
           snapSpeed: 400
         })
 
+        // 绑定事件 维护currentPageIndex
+        // 切换到下一章会派发一个scrollEnd时间
         this.slider.on('scrollEnd', () => {
           let pageIndex = this.slider.getCurrentPage().pageX
           if (this.loop) {
@@ -105,6 +119,7 @@
       _initDots() {
         this.dots = new Array(this.children.length)
       },
+      // 自动播放
       _play() {
         let pageIndex = this.currentPageIndex + 1
         if (this.loop) {

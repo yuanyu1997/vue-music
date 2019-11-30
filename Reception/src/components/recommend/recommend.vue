@@ -7,8 +7,9 @@
         <!--轮播图-->
         <slider>
           <div v-for="item in recommends">
-            <a :href="item.linkUrl">
-              <img :src="item.picUrl" alt="">
+            <!--:href="item.linkUrl"-->
+            <a href="javascript:void(0)">
+              <img :src="item.picUrl" alt="全力抢修中...">
             </a>
           </div>
         </slider>
@@ -39,7 +40,7 @@
       _getRecommend() {
         getRecommend().then((res) => {
           if (res.code === ERR_OK) {
-            this.recommends = res.data.slider
+            this.recommends = res.data
           }
         })
       }
