@@ -7,39 +7,31 @@ public class Recommend {
     /**
      * 图片链接
      */
-    private String picUrl;
+    private String imgurl;
     /**
      * 图片跳转链接
      */
     private String linkUrl;
 
 
+    public String getImgurl() {
+        return imgurl;
+    }
+
     public String getLinkUrl() {
         return linkUrl;
     }
 
-    public String getPicUrl() {
-        return picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
-
-    public void setLinkUrl(String linkUrl) {
+    public Recommend(String linkUrl, String imgurl) {
         this.linkUrl = linkUrl;
-    }
-
-    public Recommend(String linkUrl, String picUrl) {
-        this.linkUrl = linkUrl;
-        this.picUrl = picUrl;
+        this.imgurl = imgurl;
     }
 
     @Override
     public String toString() {
         return "{" +
                 "linkUrl='" + linkUrl + '\'' +
-                ", picUrl='" + picUrl + '\'' +
+                ", imgurl='" + imgurl + '\'' +
                 '}';
     }
 }

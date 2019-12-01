@@ -5,7 +5,9 @@
     <!--顶导tab组件-->
     <tab></tab>
     <!--路由-->
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 

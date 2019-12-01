@@ -1,51 +1,96 @@
 <template>
   <!--推荐-->
   <div class="recommend">
-    <div class="recommend-content">
-      <!--拿到数据才渲染(异步函数)-->
-      <div v-if="recommends.length" class="slider-wrapper">
-        <!--轮播图-->
-        <slider>
-          <div v-for="item in recommends">
-            <!--:href="item.linkUrl"-->
-            <a href="javascript:void(0)">
-              <img :src="item.picUrl" alt="全力抢修中...">
-            </a>
-          </div>
-        </slider>
+    <scroll ref="scroll" class="recommend-content" :data="discList">
+      <div>
+        <!--拿到数据才渲染(异步函数)-->
+        <div v-if="recommends.length" class="slider-wrapper">
+          <!--轮播图-->
+          <slider>
+            <div v-for="item in recommends">
+              <!--:href="item.linkUrl"-->
+              <a href="javascript:void(0)">
+                <!--fastclick对class为needsclick属性不会拦截点击-->
+                <!--在img标签的src属性填充上值之后，触发onload事件-->
+                <img class="needsclick" @load="loadImage" :src="item.imgurl" alt="全力抢修中...">
+              </a>
+            </div>
+          </slider>
+        </div>
+        <div class="recommend-list">
+          <h1 class="list-title">热门歌单推荐</h1>
+          <ul>
+            <li v-for="item in discList" class="item">
+              <div class="icon">
+                <!--:src="item.imgurl"-->
+                <img width="60" height="60" v-lazy="item.imgurl">
+              </div>
+              <div class="text">
+                <h2 class="name" v-html="item.name"></h2>
+                <p class="desc" v-html="item.desc"></p>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="recommend-list">
-        <h1 class="list-title">热门歌单推荐</h1>
-        <ul></ul>
+      <!--歌单未初始化时的加载动画-->
+      <div class="loading-container" v-show="!discList.length">
+        <loading></loading>
       </div>
-    </div>
+    </scroll>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import {getRecommend} from '../../api/recommend.js'
+  import Loading from '../../base/loading/loading'
+  import Scroll from '../../base/scroll/scroll'
+  import {getRecommend, getDiscList} from '../../api/recommend.js'
   import {ERR_OK} from '../../api/config.js'
   import Slider from '../../base/slider/slider.vue'
 
   export default {
     data() {
       return {
-        recommends: []
+        // 推荐(轮播图)
+        recommends: [],
+        // 歌单
+        discList: []
       }
     },
     created() {
       this._getRecommend()
+      this._getDiscList()
     },
     methods: {
+      // 获取推荐(轮播图)
       _getRecommend() {
         getRecommend().then((res) => {
           if (res.code === ERR_OK) {
             this.recommends = res.data
           }
         })
+      },
+      // 获取歌单
+      _getDiscList() {
+        getDiscList().then((res) => {
+          if (res.code === ERR_OK) {
+            this.discList = res.data
+          }
+        })
+      },
+      // 只要有一张图片撑开了轮播图 就重新计算scroll
+      loadImage() {
+        if (!this.checkloaded) {
+          this.checkloaded = true
+          this.$refs.scroll.refresh()
+        }
       }
     },
-    components: {Slider}
+    components: {
+      Slider,
+      Scroll,
+      Loading
+    }
   }
 </script>
 

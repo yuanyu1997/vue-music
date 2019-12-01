@@ -57,13 +57,13 @@ public class RecommendService {
             Recommend[] reArr = new Recommend[jsonArray.size()];
             for (int i = 0; i < jsonArray.size(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
-                String picUrl = obj.getJSONObject("pic_info").get("url").toString();
-                String jumpUrlKey = obj.getJSONObject("jump_info").get("url").toString();
+                String imgurl = obj.getJSONObject("pic_info").getString("url");
+                String jumpUrlKey = obj.getJSONObject("jump_info").getString("url");
                 if (jumpUrlKey.contains("https")) {
-                    reArr[i] = new Recommend(jumpUrlKey, picUrl);
+                    reArr[i] = new Recommend(jumpUrlKey, imgurl);
                 } else {
                     String linkUrl = "https://y.qq.com/n/yqq/album/" + jumpUrlKey + ".html";
-                    reArr[i] = new Recommend(linkUrl, picUrl);
+                    reArr[i] = new Recommend(linkUrl, imgurl);
                 }
             }
             Map<String, Object> resMap = new HashMap<>();

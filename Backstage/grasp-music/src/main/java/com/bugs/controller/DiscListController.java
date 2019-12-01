@@ -1,5 +1,6 @@
 package com.bugs.controller;
 
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -10,23 +11,26 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.junit.Test;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
-
-public class RequestTest {
-
+@RestController
+@CrossOrigin
+@RequestMapping("/discList")
+public class DiscListController {
     /**
-     * // 歌单
+     * 获取歌单信息
      * musicu.fcg
      * https://u.y.qq.com/cgi-bin/musicu.fcg?-=recom45390136807495907&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data={"comm":{"ct":24},"recomPlaylist":{"method":"get_hot_recommend","param":{"async":1,"cmd":2},"module":"playlist.HotRecommendServer"}}
      */
-    @Test
-    public void test_() throws URISyntaxException, IOException {
+    @RequestMapping("/musicList")
+    public Map<String, Object> getDiscList() throws URISyntaxException, IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         URIBuilder uriBuilder = new URIBuilder("https://u.y.qq.com/cgi-bin/musicu.fcg");
         uriBuilder.setParameter("-", "recom45390136807495907");
@@ -76,8 +80,8 @@ public class RequestTest {
             Map<String, Object> resMap = new HashMap<>();
             resMap.put("data", discLists);
             resMap.put("code", temp.get("code"));
-            System.out.println(content);
+            return resMap;
         }
+        return null;
     }
-
 }

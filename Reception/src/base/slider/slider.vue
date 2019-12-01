@@ -1,3 +1,4 @@
+
 <template>
   <!--轮播-->
   <div class="slider" ref="slider">
@@ -61,6 +62,7 @@
         this.slider.refresh()
       })
     },
+    // 销毁监听事件 手动清除timer
     destroyed() {
       clearTimeout(this.timer)
     },
