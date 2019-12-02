@@ -1,29 +1,23 @@
+<!--基本的轮播图-->
 <template>
-  <div class="slider" ref="slider">
-    <div class="slider-content" ref="sliderContent">
-      <!--轮播图-->
+  <div class="wrapper" ref="wrapper">
+    <div class="content" ref="content">
+      <!--图片-->
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
+  import BScroll from 'better-scroll'
+  import {addClass} from '../js/dom.js'
+
   export default {
     props: {
       // 是否循环播放
       loop: {
         type: Boolean,
         default: true
-      },
-      // 是否自动播放
-      autoPlay: {
-        type: Boolean,
-        default: true
-      },
-      // 播放间隔
-      interval: {
-        type: Number,
-        default: 3000
       }
     },
     mounted: function () {
@@ -33,40 +27,43 @@
       }, 20)
     },
     methods: {
-      // 设置slider的宽度
-      setSliderWidth: function (isResize) {
-        // 获取slider里的所有的子元素
-        this.children = this.$refs.sliderContent.children
-        // console.log(this.children)
+      // 计算content的宽度
+      setSliderWidth: function () {
+        // 获取content里的所有的子元素
+        this.children = this.$refs.content.children
         // 计算宽度  = 图片个数+每张图片的宽度
         let width = 0
-        // 获取手机屏幕的宽度
-        let sliderWidth = this.$refs.slider.clientWidth
+
+        // wrapperWidth = width+左右padding
+        let wrapperWidth = this.$refs.wrapper.clientWidth
 
         for (let i = 0; i < this.children.length; i++) {
           // 获取children里的每一项内容
           let child = this.children[i]
-
-          child.style.width = sliderWidth + 'px'
-          width += sliderWidth
+          addClass(child, 'content-item')
+          child.style.width = wrapperWidth + 'px'
+          width += wrapperWidth
         }
         if (this.loop) {
-          width += 2 * sliderWidth
+          width += 2 * wrapperWidth
         }
-        this.$refs.sliderContent.style.width = width + 'px'
+        this.$refs.content.style.width = width + 'px'
       },
-      // 设置宽度以后初始化slider
+      // 设置宽度以后初始化wrapper
       initSlider: function () {
-        this.slider = new BScroll(this.$refs.slider, {
+        this.wrapper = new BScroll(this.$refs.wrapper, {
+          // 横向滚动
           scrollX: true,
+          // 纵向滚动
           scrollY: false,
+
           momentum: false,
-          snap: {
-            loop: this.loop,
-            threshold: 0.3,
-            speed: 400
-          },
-          click: true
+
+          snap: true,
+          // 是否循环轮播
+          snapLoop: this.loop,
+          snapThreshold: 0.3,
+          snapSpeed: 400
         })
       }
 
@@ -74,7 +71,22 @@
   }
 </script>
 
+<style scoped lang="stylus" rel="stylesheet/stylus">
+  .wrapper
+    min-height: 1px
 
-<style>
+    .content
+      position: relative
+      overflow: hidden
+      white-space: nowrap
 
+      .content-item
+        float: left
+        box-sizing: border-box
+        overflow: hidden
+        text-align: center
+
+        img
+          display: block
+          width: 100%
 </style>
