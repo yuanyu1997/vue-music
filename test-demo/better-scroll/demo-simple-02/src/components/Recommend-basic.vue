@@ -18,47 +18,40 @@
       loop: {
         type: Boolean,
         default: true
-      },
-      // 是否自动播放
-      autoPlay: {
-        type: Boolean,
-        default: true
-      },
-      // 播放间隔
-      interval: {
-        type: Number,
-        default: 3000
       }
     },
     mounted: function () {
       setTimeout(() => {
-        this._setSliderWidth()
+        this._setSliderGroupWidth()
         this._initSlider()
-      }, 20)
+      }, 20)// 游览器默认刷新时间间隔为17ms
     },
     methods: {
-      // 计算slider的宽度
-      _setSliderWidth: function () {
-        // 获取slider里的所有的子元素
-        this.children = this.$refs.sliderGroup.children
+      // 计算sliderGroup的宽度
+      _setSliderGroupWidth: function () {
         // 计算宽度  = 图片个数+每张图片的宽度
-        let width = 0
-        // wrapperWidth = width+左右padding
+        let sliderGroupWidth = 0
+        // sliderWidth = width+左右padding
         let sliderWidth = this.$refs.slider.clientWidth
+
+        // 获取sliderGroup里的所有的子元素
+        this.children = this.$refs.sliderGroup.children
+
         for (let i = 0; i < this.children.length; i++) {
           // 获取children里的每一项内容
           let child = this.children[i]
+          //console.log(child)
           addClass(child, 'slider-item')
           child.style.width = sliderWidth + 'px'
-          width += sliderWidth
+          sliderGroupWidth += sliderWidth
         }
         // 克隆(拷贝两份) 保证无缝滚动
         if (this.loop) {
-          width += 2 * sliderWidth
+          sliderGroupWidth += 2 * sliderWidth
         }
-        this.$refs.sliderGroup.style.width = width + 'px'
+        this.$refs.sliderGroup.style.width = sliderGroupWidth + 'px'
       },
-      // 设置slider宽度以后初始化slider
+      // 设置sliderGroup宽度以后初始化slider
       _initSlider: function () {
         this.slider = new BScroll(this.$refs.slider, {
           // 横向滚动
@@ -96,12 +89,6 @@
         box-sizing: border-box
         overflow: hidden
         text-align: center
-
-        a
-          display: block
-          width: 100%
-          overflow: hidden
-          text-decoration: none
 
         img
           display: block

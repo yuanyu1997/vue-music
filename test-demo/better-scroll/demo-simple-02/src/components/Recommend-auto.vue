@@ -27,19 +27,18 @@
       // 播放间隔
       interval: {
         type: Number,
-        default: 3000
+        default: 2000
       }
     },
     data() {
       return {
-        dots: [],
         // 当前播放的页数
         currentPageIndex: 0
       }
     },
     mounted: function () {
       setTimeout(() => {
-        this._setSliderWidth()
+        this._setSliderGroupWidth()
         this._initSlider()
 
         if (this.autoPlay) {
@@ -53,7 +52,7 @@
         if (!this.slider) {
           return
         }
-        this._setSliderWidth(true)
+        this._setSliderGroupWidth(true)
         this.slider.refresh()
       })
 
@@ -64,42 +63,29 @@
       clearTimeout(this.timer)
     },
     methods: {
-      // 计算slider的宽度
-      _setSliderWidth: function () {
-        // 获取slider里的所有的子元素
-        this.children = this.$refs.sliderGroup.children
-        // 计算宽度  = 图片个数+每张图片的宽度
-        let width = 0
-        // wrapperWidth = width+左右padding
+      _setSliderGroupWidth: function (isResize = false) {
+        let sliderGroupWidth = 0
         let sliderWidth = this.$refs.slider.clientWidth
+        this.children = this.$refs.sliderGroup.children
         for (let i = 0; i < this.children.length; i++) {
-          // 获取children里的每一项内容
           let child = this.children[i]
           addClass(child, 'slider-item')
           child.style.width = sliderWidth + 'px'
-          width += sliderWidth
+          sliderGroupWidth += sliderWidth
         }
         // 克隆(拷贝两份) 保证无缝滚动
-        if (this.loop) {
-          width += 2 * sliderWidth
+        // 视口改变导致重新计算slider width不需要在拷贝了
+        if (this.loop && !isResize) {
+          sliderGroupWidth += 2 * sliderWidth
         }
-        this.$refs.sliderGroup.style.width = width + 'px'
+        this.$refs.sliderGroup.style.width = sliderGroupWidth + 'px'
       },
-      // 设置slider宽度以后初始化slider
       _initSlider: function () {
         this.slider = new BScroll(this.$refs.slider, {
-          // 横向滚动
           scrollX: true,
-          // 纵向滚动
           scrollY: false,
           momentum: false,
-          // snap: {
-          //   loop: this.loop,
-          //   threshold: 0.3,
-          //   speed: 400
-          // }
           snap: true,
-          // 是否循环轮播
           snapLoop: this.loop,
           snapThreshold: 0.3,
           snapSpeed: 400
@@ -108,12 +94,15 @@
         // 绑定事件 维护currentPageIndex
         // 切换到下一章会派发一个scrollEnd事件
         this.slider.on('scrollEnd', () => {
+          console.log('触发scrollEnd 事件 currentPageIndex=' + this.currentPageIndex)
           let pageIndex = this.slider.getCurrentPage().pageX
+          // 循环播放
           if (this.loop) {
             pageIndex -= 1
           }
           this.currentPageIndex = pageIndex
           if (this.autoPlay) {
+            // 清除定时器
             clearTimeout(this.timer)
             this._play()
           }
@@ -149,12 +138,6 @@
         box-sizing: border-box
         overflow: hidden
         text-align: center
-
-        a
-          display: block
-          width: 100%
-          overflow: hidden
-          text-decoration: none
 
         img
           display: block
