@@ -1,5 +1,5 @@
 import {agentServer} from './config.js'
-import musicData from '../common/js/music.js'
+import musicData from './music.js'
 
 /**
  * 获取推荐(轮播图)

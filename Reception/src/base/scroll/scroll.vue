@@ -1,4 +1,4 @@
-<!--通用的滚动主键-->
+<!--通用的滚动组件-->
 <template>
   <div ref="wrapper">
     <!--插槽-->
@@ -18,10 +18,12 @@
         type: Boolean,
         default: true
       },
+      // 是否监听滚动事件
       listenScroll: {
         type: Boolean,
         default: false
       },
+      // 数据
       data: {
         type: Array,
         default: null
@@ -54,9 +56,11 @@
           click: this.click
         })
 
+        // 监听滚动
         if (this.listenScroll) {
           let me = this
           this.scroll.on('scroll', (pos) => {
+            // 派发事件 pos 的属性为x轴和y轴
             me.$emit('scroll', pos)
           })
         }

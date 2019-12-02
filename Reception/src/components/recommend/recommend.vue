@@ -12,7 +12,7 @@
               <a href="javascript:void(0)">
                 <!--fastclick对class为needsclick属性不会拦截点击-->
                 <!--在img标签的src属性填充上值之后，触发onload事件-->
-                <img class="needsclick" @load="loadImage" :src="item.imgurl" alt="全力抢修中...">
+                <img class="needsclick" @load="loadImage" :src="item.imgUrl" alt="全力抢修中...">
               </a>
             </div>
           </slider>
@@ -33,7 +33,7 @@
           </ul>
         </div>
       </div>
-      <!--歌单未初始化时的加载动画-->
+      <!--歌单未初始化时显示加载动画-->
       <div class="loading-container" v-show="!discList.length">
         <loading></loading>
       </div>
@@ -44,9 +44,9 @@
 <script type="text/ecmascript-6">
   import Loading from '../../base/loading/loading'
   import Scroll from '../../base/scroll/scroll'
-  import {getRecommend, getDiscList} from '../../api/recommend.js'
   import {ERR_OK} from '../../api/config.js'
   import Slider from '../../base/slider/slider.vue'
+  import {getRecommend, getDiscList} from '../../api/recommend.js'
 
   export default {
     data() {

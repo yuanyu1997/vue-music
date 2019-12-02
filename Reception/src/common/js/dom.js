@@ -24,11 +24,18 @@ export function addClass(el, className) {
   el.className = newClass.join(' ')
 }
 
+/**
+ * 获取dom对象的 data-name 属性
+ * @param el dom对象
+ * @param name
+ * @param val 有值set无值get
+ */
 export function getData(el, name, val) {
   const prefix = 'data-'
   if (val) {
     return el.setAttribute(prefix + name, val)
   }
+  // https://www.runoob.com/jsref/met-element-getattribute.html
   return el.getAttribute(prefix + name)
 }
 
