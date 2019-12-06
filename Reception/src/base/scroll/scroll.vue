@@ -1,7 +1,6 @@
-<!--通用的滚动组件-->
+<!--通用的滚动组件(纵向)-->
 <template>
   <div ref="wrapper">
-    <!--插槽-->
     <slot></slot>
   </div>
 </template>
@@ -14,6 +13,7 @@
         type: Number,
         default: 1
       },
+      // true 是否派发clink时间
       click: {
         type: Boolean,
         default: true
@@ -42,9 +42,10 @@
       }
     },
     mounted() {
+      // 确保dom渲染完成
       setTimeout(() => {
         this._initScroll()
-      }, 20)// 确保dom渲染完成
+      }, 20)
     },
     methods: {
       _initScroll() {

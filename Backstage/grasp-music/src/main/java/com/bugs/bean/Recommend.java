@@ -1,7 +1,7 @@
 package com.bugs.bean;
 
 /**
- * 返回轮播图所需要的信息
+ * 轮播图
  */
 public class Recommend {
     /**

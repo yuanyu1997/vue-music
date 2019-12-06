@@ -1,6 +1,8 @@
 package com.bugs.bean;
 
-
+/**
+ * 歌手信息
+ */
 public class Singer {
     //歌手id
     private String id;

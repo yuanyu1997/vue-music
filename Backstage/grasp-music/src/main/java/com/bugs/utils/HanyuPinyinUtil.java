@@ -41,7 +41,6 @@ public class HanyuPinyinUtil {
         }
         return pinyin.toString();
     }
-
     /**
      * 获取歌手姓名所对应的拼音的的第一个字母
      */
@@ -49,8 +48,4 @@ public class HanyuPinyinUtil {
         return getPinyinString(sinName).toUpperCase().substring(0, 1).charAt(0);
     }
 
-    //public static void main(String[] args) {
-    //    HanyuPinyinUtil util = new HanyuPinyinUtil();
-    //    System.out.println(util.getFirstCharByName("刀郎"));
-    //}
 }

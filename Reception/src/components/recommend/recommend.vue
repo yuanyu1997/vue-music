@@ -1,5 +1,5 @@
+<!--推荐-->
 <template>
-  <!--推荐-->
   <div class="recommend">
     <scroll ref="scroll" class="recommend-content" :data="discList">
       <div>
@@ -22,7 +22,6 @@
           <ul>
             <li v-for="item in discList" class="item">
               <div class="icon">
-                <!--:src="item.imgurl"-->
                 <img width="60" height="60" v-lazy="item.imgurl">
               </div>
               <div class="text">
@@ -33,7 +32,6 @@
           </ul>
         </div>
       </div>
-      <!--歌单未初始化时显示加载动画-->
       <div class="loading-container" v-show="!discList.length">
         <loading></loading>
       </div>

@@ -3,7 +3,7 @@ package com.bugs.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.bugs.bean.DiscList;
+import com.bugs.bean.SongList;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
@@ -62,10 +62,10 @@ public class RequestTest {
 
             JSONObject temp = JSON.parseObject(content);
             JSONArray jsonArr = temp.getJSONObject("recomPlaylist").getJSONObject("data").getJSONArray("v_hot");
-            DiscList[] discLists = new DiscList[jsonArr.size()];
+            SongList[] discLists = new SongList[jsonArr.size()];
             for (int i = 0; i < jsonArr.size(); i++) {
                 JSONObject obj = jsonArr.getJSONObject(i);
-                discLists[i] = new DiscList(obj.getString("cover"),
+                discLists[i] = new SongList(obj.getString("cover"),
                         obj.getString("username"),
                         obj.getString("title"),
                         obj.getString("content_id"));

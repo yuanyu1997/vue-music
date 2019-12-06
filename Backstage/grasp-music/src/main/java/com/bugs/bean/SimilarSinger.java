@@ -3,7 +3,7 @@ package com.bugs.bean;
 import java.util.ArrayList;
 
 /**
- * 首字母一致的歌手
+ * "key"一致的歌手(首字母相同|歌手)
  */
 public class SimilarSinger {
     // 关键字

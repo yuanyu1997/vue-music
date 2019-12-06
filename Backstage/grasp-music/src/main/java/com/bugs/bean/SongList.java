@@ -3,7 +3,7 @@ package com.bugs.bean;
 /**
  * 歌单
  */
-public class DiscList {
+public class SongList {
     //歌单图片
     private String imgurl;
     //歌单名字
@@ -13,7 +13,7 @@ public class DiscList {
 
     //歌单id
     private String id;
-    public DiscList(String imgurl, String name, String desc,String id) {
+    public SongList(String imgurl, String name, String desc, String id) {
         this.imgurl = imgurl;
         this.name = name;
         this.desc = desc;
