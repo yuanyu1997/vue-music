@@ -146,6 +146,12 @@ https://u.y.qq.com/cgi-bin/musicu.fcg?-=recom9681184374767442&g_tk=5381&loginUin
 
 
 
+```
+https://u.y.qq.com/cgi-bin/musicu.fcg?-=recom9681184374767442&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data={%20%22comm%22:%20{%20%22ct%22:%2024%20},%20%22recomPlaylist%22:%20{%20%22method%22:%20%22get_hot_recommend%22,%20%22param%22:%20{%20%22async%22:%201,%20%22cmd%22:%202%20},%20%22module%22:%20%22playlist.HotRecommendServer%22%20}%20}
+```
+
+
+
 # 2.歌手页面
 
 ![](./img/2.png)
@@ -372,6 +378,39 @@ http://ws.stream.qqmusic.qq.com/C400???.m4a?guid=2822634809&vkey=???&fromtag=66
 req data sip
 
 
+```
+
+
+
+
+
+
+
+获取歌词
+
+```
+fcg_query_lyric_new.fcg
+
+-: MusicJsonCallback_lrc
+pcachetime: 1575633616642
+songmid: 001Qu4I30eVFYb
+g_tk: 5381
+loginUin: 0
+hostUin: 0
+format: json
+inCharset: utf8
+outCharset: utf-8
+notice: 0
+platform: yqq.json
+needNewCode: 0
+```
+
+```
+Accept: application/json, text/javascript, */*; q=0.01
+Origin: https://y.qq.com
+Referer: https://y.qq.com/portal/player.html
+Sec-Fetch-Mode: cors
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3887.7 Safari/537.36
 ```
 
 

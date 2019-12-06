@@ -24,8 +24,8 @@
     <div class="list-shortcut" @touchstart="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove">
       <ul>
         <li v-for="(item, index) in shortcutList" :data-index="index" class="item"
-            :class="{'current':currentIndex===index}">{{item}}
-
+            :class="{'current':currentIndex===index}">
+          {{item}}
         </li>
       </ul>
     </div>
@@ -57,19 +57,19 @@
     },
     computed: {
       // 右侧快速入口列表
-      shortcutList () {
+      shortcutList() {
         return this.data.map((group) => {
           return group.key.substr(0, 1)
         })
       },
-      fixedTitle () {
+      fixedTitle() {
         if (this.scrollY > 0) {
           return ''
         }
         return this.data[this.currentIndex] ? this.data[this.currentIndex].title : ''
       }
     },
-    data () {
+    data() {
       return {
         // 事实滚动的位置
         scrollY: -1,
@@ -78,7 +78,7 @@
         diff: -1
       }
     },
-    created () {
+    created() {
       this.probeType = 3
       // 监听scroll的滚动
       this.listenScroll = true
@@ -87,11 +87,11 @@
     },
     methods: {
       // 派发事件
-      selectItem (item) {
+      selectItem(item) {
         this.$emit('select', item)
       },
       // 点击导航栏跳转到对应歌手(拼音 首字母相同)
-      onShortcutTouchStart (e) {
+      onShortcutTouchStart(e) {
         // 获取data-index的值
         let anchorIndex = getData(e.target, 'index')
         // 记录第一次滑动快速入口 手指的位置
@@ -102,7 +102,7 @@
         this._scrollTo(anchorIndex)
       },
       // 拖动效果(拖动到哪里就显示对应的歌手)
-      onShortcutTouchMove (e) {
+      onShortcutTouchMove(e) {
         let firstTouch = e.touches[0]
         this.touch.y2 = firstTouch.pageY
         // 计算滑动的偏移量(偏移了几个锚点) |0 向下取整
@@ -112,15 +112,15 @@
 
         this._scrollTo(anchorIndex)
       },
-      refresh () {
+      refresh() {
         this.$refs.listview.refresh()
       },
       // 处理Scroll组件发布的scroll事件
-      scroll (pos) {
+      scroll(pos) {
         this.scrollY = pos.y
       },
       // 计算高度
-      _calculateHeight () {
+      _calculateHeight() {
         // "key"相同元素的高度(listGroup)
         this.listHeight = []
         const list = this.$refs.listGroup
@@ -133,7 +133,7 @@
         }
       },
       // 滚动
-      _scrollTo (index) {
+      _scrollTo(index) {
         if (!index && index !== 0) {
           return
         }
@@ -148,12 +148,12 @@
       }
     },
     watch: {
-      data () {
+      data() {
         setTimeout(() => {
           this._calculateHeight()
         }, 20)
       },
-      scrollY (newY) {
+      scrollY(newY) {
         const listHeight = this.listHeight
         // 当滚动到顶部，newY>0
         if (newY > 0) {
@@ -175,7 +175,7 @@
         // 当滚动到底部，且-newY大于最后一个元素的上限
         this.currentIndex = listHeight.length - 2
       },
-      diff (newVal) {
+      diff(newVal) {
         let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
         if (this.fixedTop === fixedTop) {
           return

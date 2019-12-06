@@ -55,6 +55,7 @@ public class RecommendServiceImpl implements RecommendService {
 
     /**
      * 歌单
+     * https://u.y.qq.com/cgi-bin/musicu.fcg?-=recom9681184374767442&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data={%20%22comm%22:%20{%20%22ct%22:%2024%20},%20%22recomPlaylist%22:%20{%20%22method%22:%20%22get_hot_recommend%22,%20%22param%22:%20{%20%22async%22:%201,%20%22cmd%22:%202%20},%20%22module%22:%20%22playlist.HotRecommendServer%22%20}%20}
      */
     @Override
     public Map<String, Object> getDiscList() {

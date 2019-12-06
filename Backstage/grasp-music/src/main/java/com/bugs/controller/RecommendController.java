@@ -36,7 +36,7 @@ public class RecommendController extends BaseController{
      * 歌单信息
      */
     @RequestMapping("/songList")
-    public Map<String, Object> getDiscList()  {
+    public Map<String, Object> getSongList()  {
         Map<String, Object> resMap = recommendService.getDiscList();
         if (resMap == null) {
             resMap = new HashMap<>();
@@ -46,5 +46,7 @@ public class RecommendController extends BaseController{
         }
         return resMap;
     }
+
+
 
 }

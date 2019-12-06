@@ -45,7 +45,7 @@ public class URIBuilderUtil {
     /**
      * 设置请求参数中携带的基本信息
      */
-    private void setBasicParameter(URIBuilder uriBuilder) {
+    public void setBasicParameter(URIBuilder uriBuilder) {
         uriBuilder.setParameter("g_tk", "5381");
         uriBuilder.setParameter("loginUin", "0");
         uriBuilder.setParameter("hostUin", "0");

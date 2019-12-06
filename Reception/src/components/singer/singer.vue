@@ -15,7 +15,7 @@
   export default {
     data() {
       return {
-        // 首字母相同的歌手组成的数组
+        // "key"相同的歌手组成的数组(首字母|热门)
         singers: []
       }
     },
