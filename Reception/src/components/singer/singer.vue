@@ -1,6 +1,7 @@
 <template>
   <div class="singer" ref="singer">
-    <list-view :similarSingerArr="similarSingerArr" ref="list"></list-view>
+    <list-view @select="selectSinger" :data="singers" ref="list"></list-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -9,11 +10,13 @@
   import {ERR_OK} from '../../api/config.js'
   import {getSingerList} from '../../api/singer.js'
 
+  import {mapMutations} from 'vuex'
+
   export default {
     data() {
       return {
         // 首字母相同的歌手组成的数组
-        similarSingerArr: []
+        singers: []
       }
     },
     created() {
@@ -24,10 +27,20 @@
         getSingerList().then((res) => {
           if (res.code === ERR_OK) {
             // 热门 A B C ... Z
-            this.similarSingerArr = res.data
+            this.singers = res.data
           }
         })
-      }
+      },
+      // 跳转到对应歌手详情页
+      selectSinger(singer) {
+        this.$router.push({
+          path: `/singer/${singer.id}`
+        })
+        this.setSinger(singer)
+      },
+      ...mapMutations({
+        setSinger: 'SET_SINGER'
+      })
     },
     components: {
       ListView

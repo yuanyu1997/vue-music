@@ -3,15 +3,15 @@
   <scroll @scroll="scroll"
           :listen-scroll="listenScroll"
           :probe-type="probeType"
-          :data="similarSingerArr"
+          :data="data"
           class="listview"
           ref="listview">
     <ul>
-      <li v-for="item in similarSingerArr" class="list-group" ref="listGroup">
-        <!--歌手拼音第一个字符/热门-->
+      <li v-for="item in data" class="list-group" ref="listGroup">
+        <!--歌手拼音的 第一个字符|热门-->
         <h2 class="list-group-title">{{item.key}}</h2>
         <uL>
-          <li @click="selectItem(item)" v-for="singer in item.list" class="list-group-item">
+          <li @click="selectItem(singer)" v-for="singer in item.list" class="list-group-item">
             <!--歌手图片-->
             <img class="avatar" v-lazy="singer.avatar">
             <!--歌手姓名-->
@@ -20,18 +20,19 @@
         </uL>
       </li>
     </ul>
-    <!--导航栏-->
+    <!--右侧快速入口-->
     <div class="list-shortcut" @touchstart="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove">
       <ul>
         <li v-for="(item, index) in shortcutList" :data-index="index" class="item"
             :class="{'current':currentIndex===index}">{{item}}
+
         </li>
       </ul>
     </div>
     <div class="list-fixed" ref="fixed" v-show="fixedTitle">
       <div class="fixed-title">{{fixedTitle}}</div>
     </div>
-    <div v-show="!similarSingerArr.length" class="loading-container">
+    <div v-show="!data.length" class="loading-container">
       <loading></loading>
     </div>
   </scroll>
@@ -43,81 +44,84 @@
   import {getData} from '../../common/js/dom.js'
 
   const TITLE_HEIGHT = 30
-  // 锚点高度
   const ANCHOR_HEIGHT = 18
 
   export default {
     props: {
-      similarSingerArr: {
+      // "key"相同的歌手组成的数组(热门|首字母相同)
+      data: {
         type: Array,
         // prop的默认值data必须是一个函数
-        default: function () {
-          return []
-        }
+        default: () => []
       }
     },
     computed: {
-      // 导航栏列表
-      shortcutList() {
-        return this.similarSingerArr.map((group) => {
+      // 右侧快速入口列表
+      shortcutList () {
+        return this.data.map((group) => {
           return group.key.substr(0, 1)
         })
       },
-      fixedTitle() {
+      fixedTitle () {
         if (this.scrollY > 0) {
           return ''
         }
-        return this.similarSingerArr[this.currentIndex] ? this.similarSingerArr[this.currentIndex].title : ''
+        return this.data[this.currentIndex] ? this.data[this.currentIndex].title : ''
       }
     },
-    data() {
+    data () {
       return {
+        // 事实滚动的位置
         scrollY: -1,
-        // 当前应该显示的是第几个
+        // 当前应该显示的是第几个(高亮)
         currentIndex: 0,
         diff: -1
       }
     },
-    created() {
+    created () {
       this.probeType = 3
+      // 监听scroll的滚动
       this.listenScroll = true
       this.touch = {}
       this.listHeight = []
     },
     methods: {
-      selectItem(item) {
+      // 派发事件
+      selectItem (item) {
         this.$emit('select', item)
       },
       // 点击导航栏跳转到对应歌手(拼音 首字母相同)
-      onShortcutTouchStart(e) {
-        // 获取data-index的值similarSingersArr的某个值
+      onShortcutTouchStart (e) {
+        // 获取data-index的值
         let anchorIndex = getData(e.target, 'index')
+        // 记录第一次滑动快速入口 手指的位置
         let firstTouch = e.touches[0]
         this.touch.y1 = firstTouch.pageY
         this.touch.anchorIndex = anchorIndex
 
         this._scrollTo(anchorIndex)
       },
-      // 拖动效果(拖动到哪里就显示对应的歌手(拼音 首字母相同))
-      // 需要阻止下层的滚动
-      onShortcutTouchMove(e) {
+      // 拖动效果(拖动到哪里就显示对应的歌手)
+      onShortcutTouchMove (e) {
         let firstTouch = e.touches[0]
         this.touch.y2 = firstTouch.pageY
-        // 计算滚动的偏移量（偏移了几个锚点） |0 向下取整
+        // 计算滑动的偏移量(偏移了几个锚点) |0 向下取整
         let delta = (this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT | 0
+        // !数字相加
         let anchorIndex = parseInt(this.touch.anchorIndex) + delta
 
         this._scrollTo(anchorIndex)
       },
-      refresh() {
+      refresh () {
         this.$refs.listview.refresh()
       },
-      // 处理scroll事件
-      scroll(pos) {
+      // 处理Scroll组件发布的scroll事件
+      scroll (pos) {
         this.scrollY = pos.y
       },
       // 计算高度
-      _calculateHeight() {
+      _calculateHeight () {
+        // "key"相同元素的高度(listGroup)
         this.listHeight = []
         const list = this.$refs.listGroup
         let height = 0
@@ -129,7 +133,7 @@
         }
       },
       // 滚动
-      _scrollTo(index) {
+      _scrollTo (index) {
         if (!index && index !== 0) {
           return
         }
@@ -144,12 +148,12 @@
       }
     },
     watch: {
-      similarSingerArr() {
+      data () {
         setTimeout(() => {
           this._calculateHeight()
         }, 20)
       },
-      scrollY(newY) {
+      scrollY (newY) {
         const listHeight = this.listHeight
         // 当滚动到顶部，newY>0
         if (newY > 0) {
@@ -158,7 +162,9 @@
         }
         // 在中间部分滚动
         for (let i = 0; i < listHeight.length - 1; i++) {
+          // 下限
           let height1 = listHeight[i]
+          // 上限
           let height2 = listHeight[i + 1]
           if (-newY >= height1 && -newY < height2) {
             this.currentIndex = i
@@ -169,7 +175,7 @@
         // 当滚动到底部，且-newY大于最后一个元素的上限
         this.currentIndex = listHeight.length - 2
       },
-      diff(newVal) {
+      diff (newVal) {
         let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
         if (this.fixedTop === fixedTop) {
           return

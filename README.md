@@ -22,30 +22,10 @@
 }
 ```
 
-```
-musicu.fcg
-```
 
 
 ```
-https://u.y.qq.com/cgi-bin/musicu.fcg
-```
-
-```
--: recom19477423855264875
-g_tk: 5381
-loginUin: 0
-hostUin: 0
-format: json
-inCharset: utf8
-outCharset: utf-8
-notice: 0
-platform: yqq.json
-needNewCode: 0
-```
-
-```
-data
+https://u.y.qq.com/cgi-bin/musicu.fcg?-=recom9681184374767442&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22comm%22%3A%7B%22ct%22%3A24%7D%2C%22category%22%3A%7B%22method%22%3A%22get_hot_category%22%2C%22param%22%3A%7B%22qq%22%3A%22%22%7D%2C%22module%22%3A%22music.web_category_svr%22%7D%2C%22recomPlaylist%22%3A%7B%22method%22%3A%22get_hot_recommend%22%2C%22param%22%3A%7B%22async%22%3A1%2C%22cmd%22%3A2%7D%2C%22module%22%3A%22playlist.HotRecommendServer%22%7D%2C%22playlist%22%3A%7B%22method%22%3A%22get_playlist_by_category%22%2C%22param%22%3A%7B%22id%22%3A8%2C%22curPage%22%3A1%2C%22size%22%3A40%2C%22order%22%3A5%2C%22titleid%22%3A8%7D%2C%22module%22%3A%22playlist.PlayListPlazaServer%22%7D%2C%22new_song%22%3A%7B%22module%22%3A%22newsong.NewSongServer%22%2C%22method%22%3A%22get_new_song_info%22%2C%22param%22%3A%7B%22type%22%3A5%7D%7D%2C%22new_album%22%3A%7B%22module%22%3A%22newalbum.NewAlbumServer%22%2C%22method%22%3A%22get_new_album_info%22%2C%22param%22%3A%7B%22area%22%3A1%2C%22sin%22%3A0%2C%22num%22%3A10%7D%7D%2C%22new_album_tag%22%3A%7B%22module%22%3A%22newalbum.NewAlbumServer%22%2C%22method%22%3A%22get_new_album_area%22%2C%22param%22%3A%7B%7D%7D%2C%22toplist%22%3A%7B%22module%22%3A%22musicToplist.ToplistInfoServer%22%2C%22method%22%3A%22GetAll%22%2C%22param%22%3A%7B%7D%7D%2C%22focus%22%3A%7B%22module%22%3A%22QQMusic.MusichallServer%22%2C%22method%22%3A%22GetFocus%22%2C%22param%22%3A%7B%7D%7D%7D
 ```
 
 ```json
@@ -123,10 +103,6 @@ data
 }
 ```
 
-
-
-
-
 ## 1.2 热门歌单
 
 <http://localhost:8848/recommend/songList>
@@ -149,12 +125,6 @@ data
         }
     ]
 }
-```
-
-
-
-```
-
 ```
 
 
@@ -183,6 +153,9 @@ data
 ## 2.1 热门歌手/歌手分类 
 
 <http://localhost:8848/singer/list>
+
+
+
 
 ```json
 {
@@ -260,25 +233,10 @@ data
 }
 ```
 
-```
 musicu.fcg
-```
 
 ```
-https://u.y.qq.com/cgi-bin/musicu.fcg
-```
-
-```
--: getUCGI10871303029917678
-g_tk: 5381
-loginUin: 0
-hostUin: 0
-format: json
-inCharset: utf8
-outCharset: utf-8
-notice: 0
-platform: yqq.json
-needNewCode: 0
+https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI6116488249138035&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singerList%22%3A%7B%22module%22%3A%22Music.SingerListServer%22%2C%22method%22%3A%22get_singer_list%22%2C%22param%22%3A%7B%22area%22%3A-100%2C%22sex%22%3A-100%2C%22genre%22%3A-100%2C%22index%22%3A-100%2C%22sin%22%3A0%2C%22cur_page%22%3A1%7D%7D%7D
 ```
 
 ```json
@@ -301,4 +259,120 @@ needNewCode: 0
     }
 }
 ```
+
+
+
+## 2.2 获取指定歌手的所有歌曲
+
+![](./img/3.png)
+
+
+
+musicu.fcg
+
+```
+https://u.y.qq.com/cgi-bin/musicu.fcg?-=getSingerSong9032856280407204&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singerSongList%22%3A%7B%22method%22%3A%22GetSingerSongList%22%2C%22param%22%3A%7B%22order%22%3A1%2C%22singerMid%22%3A%22002J4UUk29y8BY%22%2C%22begin%22%3A0%2C%22num%22%3A10%7D%2C%22module%22%3A%22musichall.song_list_server%22%7D%7D
+```
+
+```
+需要media_mid 后面拼接歌曲的url需要
+singerSongList data songList[i] file media_mid
+```
+
+
+
+
+```json
+{
+    "comm": {
+        "ct": 24,
+        "cv": 0
+    },
+    "singerSongList": {
+        "method": "GetSingerSongList",
+        "param": {
+            "order": 1,
+            "singerMid": "002J4UUk29y8BY",
+            "begin": 0,
+            "num": 10
+        },
+        "module": "musichall.song_list_server"
+    }
+}
+```
+
+
+
+### 2.2.1 获取vkey拼接歌曲的url
+
+```
+薛之谦: 002J4UUk29y8BY
+演员: 001Qu4I30eVFYb
+```
+
+```json
+演员
+https://u.y.qq.com/cgi-bin/musicu.fcg?-=getplaysongvkey13038739389900833&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22req%22%3A%7B%22module%22%3A%22CDN.SrfCdnDispatchServer%22%2C%22method%22%3A%22GetCdnDispatch%22%2C%22param%22%3A%7B%22guid%22%3A%222822634809%22%2C%22calltype%22%3A0%2C%22userip%22%3A%22%22%7D%7D%2C%22req_0%22%3A%7B%22module%22%3A%22vkey.GetVkeyServer%22%2C%22method%22%3A%22CgiGetVkey%22%2C%22param%22%3A%7B%22guid%22%3A%222822634809%22%2C%22songmid%22%3A%5B%22001Qu4I30eVFYb%22%5D%2C%22songtype%22%3A%5B0%5D%2C%22uin%22%3A%220%22%2C%22loginflag%22%3A1%2C%22platform%22%3A%2220%22%7D%7D%2C%22comm%22%3A%7B%22uin%22%3A0%2C%22format%22%3A%22json%22%2C%22ct%22%3A24%2C%22cv%22%3A0%7D%7D
+```
+
+
+
+```json
+req_0 param songmid
+{
+    "req": {
+        "module": "CDN.SrfCdnDispatchServer",
+        "method": "GetCdnDispatch",
+        "param": {
+            "guid": "2822634809",
+            "calltype": 0,
+            "userip": ""
+        }
+    },
+    "req_0": {
+        "module": "vkey.GetVkeyServer",
+        "method": "CgiGetVkey",
+        "param": {
+            "guid": "2822634809",
+            "songmid": [
+                "001Qu4I30eVFYb"
+            ],
+            "songtype": [
+                0
+            ],
+            "uin": "0",
+            "loginflag": 1,
+            "platform": "20"
+        }
+    },
+    "comm": {
+        "uin": 0,
+        "format": "json",
+        "ct": 24,
+        "cv": 0
+    }
+}
+```
+
+
+
+```
+
+
+得到vkey
+req_0   data  midurlinfo[0] vkey
+
+http://ws.stream.qqmusic.qq.com/C400003mBrF72dILfK.m4a?guid=2822634809&vkey=A18FA98AEAB424E8CA06658FE07615BB65FB8DB874B311A2BC0F887B9D182588939364BA5D002C297E4385E79C7AFAD21122290AB1C6186C&uin=0&fromtag=66
+
+第一个参数为media_mid第二个为vkey
+http://ws.stream.qqmusic.qq.com/C400???.m4a?guid=2822634809&vkey=???&fromtag=66
+
+
+返回多个服务器地址
+req data sip
+
+
+```
+
+
 

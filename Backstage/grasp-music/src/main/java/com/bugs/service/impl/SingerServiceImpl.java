@@ -4,15 +4,20 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bugs.bean.SimilarSinger;
 import com.bugs.bean.Singer;
+import com.bugs.bean.Song;
 import com.bugs.service.SingerService;
 import com.bugs.utils.HanyuPinyinUtil;
 import com.bugs.utils.URIBuilderUtil;
+import javafx.util.Pair;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class SingerServiceImpl implements SingerService {
@@ -22,6 +27,8 @@ public class SingerServiceImpl implements SingerService {
     URIBuilderUtil uriBuilderUtil;
     @Autowired
     PoolingHttpClientConnectionManager manager;
+
+    Logger logger = LoggerFactory.getLogger(SingerServiceImpl.class);
 
     @Override
     public ArrayList<SimilarSinger> getSingerList() {
@@ -101,6 +108,80 @@ public class SingerServiceImpl implements SingerService {
                 singers[i] = new Singer(id, name, pic, index);
             }
             return singers;
+        }
+        return null;
+    }
+
+
+    /**
+     * 获取具体某一个歌手的歌曲列表
+     * https://u.y.qq.com/cgi-bin/musicu.fcg?-=getSingerSong9032856280407204&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singerSongList%22%3A%7B%22method%22%3A%22GetSingerSongList%22%2C%22param%22%3A%7B%22order%22%3A1%2C%22singerMid%22%3A%22002J4UUk29y8BY%22%2C%22begin%22%3A0%2C%22num%22%3A10%7D%2C%22module%22%3A%22musichall.song_list_server%22%7D%7D
+     */
+    @Override
+    public List<Song> getSingerDetail(String singerId) {
+        String url = "https://u.y.qq.com/cgi-bin/musicu.fcg";
+        //歌曲条数
+        int songLen = 666;
+        String data = "{\"comm\":{\"ct\":24,\"cv\":0},\"singerSongList\":{\"method\":\"GetSingerSongList\",\"param\":{\"order\":1,\"singerMid\":\"" + singerId + "\",\"begin\":0,\"num\":" + songLen + "},\"module\":\"musichall.song_list_server\"}}";
+        Pair<String, String> pair = new Pair<>("-", "getSingerSong9032856280407204");
+        JSONObject jsonObj = uriBuilderUtil.getResponseByBasicParameter(url, data, pair);
+        if (jsonObj != null) {
+            ArrayList<Song> songArr = new ArrayList<>();
+            JSONArray jsonArr = jsonObj.getJSONObject("singerSongList").getJSONObject("data").getJSONArray("songList");
+            for (int i = 0; i < jsonArr.size(); i++) {
+                JSONObject songInfo = jsonArr.getJSONObject(i).getJSONObject("songInfo");
+                String id = songInfo.getString("id");
+                //歌曲id
+                String mid = songInfo.getString("mid");
+                // 歌曲名称
+                String name = songInfo.getString("name");
+                //专辑名称
+                String album = songInfo.getJSONObject("album").getString("name");
+                //歌手
+                String singer = songInfo.getJSONArray("singer").getJSONObject(0).getString("name");
+                //歌曲长度
+                String duration = songInfo.getString("interval");
+                //歌曲图片
+                String image = "https://y.gtimg.cn/music/photo_new/T001R300x300M000" + singerId + ".jpg?max_age=2592000";
+                //歌曲的播放地址
+                String mediaMid = songInfo.getJSONObject("file").getString("media_mid");
+                String songUrl = getSongUrl(name, singer, mid, mediaMid);
+                if (songUrl != null) {
+                    Song song = new Song(id, mid, singer, name, album, duration, image, songUrl);
+                    songArr.add(song);
+                }
+            }
+            return songArr;
+        }
+        return null;
+    }
+
+    /**
+     * 获取歌曲的url
+     *
+     * @param name     歌名
+     * @param mid      歌曲id
+     * @param mediaMid 拼接需要media_mid
+     */
+    private String getSongUrl(String name, String singer, String mid, String mediaMid) {
+        String url = "https://u.y.qq.com/cgi-bin/musicu.fcg";
+        String data = "{\"req\":{\"module\":\"CDN.SrfCdnDispatchServer\",\"method\":\"GetCdnDispatch\",\"param\":{\"guid\":\"2822634809\",\"calltype\":0,\"userip\":\"\"}},\"req_0\":{\"module\":\"vkey.GetVkeyServer\",\"method\":\"CgiGetVkey\",\"param\":{\"guid\":\"2822634809\",\"songmid\":[\"" + mid + "\"],\"songtype\":[0],\"uin\":\"0\",\"loginflag\":1,\"platform\":\"20\"}},\"comm\":{\"uin\":0,\"format\":\"json\",\"ct\":24,\"cv\":0}}";
+        Pair<String, String> pair = new Pair<>("-", "getplaysongvkey13038739389900833");
+        JSONObject jsonObj = uriBuilderUtil.getResponseByBasicParameter(url, data, pair);
+        if (jsonObj != null) {
+            String vKey = jsonObj.getJSONObject("req_0").getJSONObject("data").getJSONArray("midurlinfo").getJSONObject(0).getString("vkey");
+            if (vKey == null || "".equals(vKey.trim())) {
+                logger.info("歌曲获取失败: " + name + "(" + singer + ")");
+                return null;
+            }
+            JSONArray ipArr = jsonObj.getJSONObject("req").getJSONObject("data").getJSONArray("sip");
+            ArrayList<String> usableIp = new ArrayList<>(6);
+            for (int i = 0; i < ipArr.size(); i++) {
+                usableIp.add(ipArr.getString(i));
+            }
+            //System.out.println(usableIp);
+            String songUrl = "http://isure.stream.qqmusic.qq.com/C400" + mediaMid + ".m4a?guid=2822634809&vkey=" + vKey + "&fromtag=66";
+            return songUrl;
         }
         return null;
     }

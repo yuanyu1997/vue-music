@@ -5,7 +5,8 @@ import Vue from 'vue'
 import App from './App'
 
 import router from './router/index.js'
-
+// vuex
+import store from './store/index.js'
 import './common/stylus/index.styl'
 
 // fastclick解决移动端延时问题
@@ -22,5 +23,6 @@ fastclick.attach(document.body)
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

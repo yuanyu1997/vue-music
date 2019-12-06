@@ -6,6 +6,13 @@ import Singer from '../components/singer/singer.vue'
 import Rank from '../components/rank/rank.vue'
 import Search from '../components/search/search.vue'
 
+import SingerDetail from '../components/singer-detail/singer-detail.vue'
+
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -21,7 +28,13 @@ export default new Router({
     {
       // 歌手页面
       path: '/singer',
-      component: Singer
+      component: Singer,
+      children: [
+        {
+          path: ':id',
+          component: SingerDetail
+        }
+      ]
     },
     {
       // 排行页面
