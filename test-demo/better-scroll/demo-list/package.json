@@ -12,7 +12,7 @@
   "dependencies": {
     "vue": "^2.5.2",
     "better-scroll": "^0.1.15",
-    "axios": "^0.18.0"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "stylus": "^0.54.7",
